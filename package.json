@@ -11,9 +11,9 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x dist/index.js",
     "start": "node dist/index.js",
-    "prepublishOnly": "tsc"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "mcp",
@@ -28,6 +28,14 @@
     "cursor"
   ],
   "homepage": "https://bucket0.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bucket0-com/agentbucket.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bucket0-com/agentbucket/issues"
+  },
+  "author": "Bucket0",
   "license": "MIT",
   "engines": {
     "node": ">=18"
