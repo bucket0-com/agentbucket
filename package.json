@@ -1,0 +1,43 @@
+{
+  "name": "agentbucket",
+  "version": "0.1.0",
+  "description": "MCP server for Bucket0 AgentBucket — give your AI agent a persistent, encrypted file system it can save to and recall by meaning.",
+  "type": "module",
+  "bin": {
+    "agentbucket": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prepublishOnly": "tsc"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "bucket0",
+    "agentbucket",
+    "ai",
+    "agent",
+    "storage",
+    "memory",
+    "claude",
+    "cursor"
+  ],
+  "homepage": "https://bucket0.com",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}
