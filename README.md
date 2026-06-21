@@ -1,34 +1,27 @@
 # agentbucket
 
-MCP server for **Bucket0 AgentBucket** — give your AI agent a persistent, encrypted file system it can **save to** and **recall by meaning**.
+Give your AI agent a file system that remembers.
 
-Works with any MCP client that runs local (stdio) servers: **Claude Code, Claude Desktop, Cursor**, and others. (For ChatGPT / claude.ai web one-click connectors, see Bucket0's remote MCP server.)
+`agentbucket` connects your assistant to **AgentBucket**: durable storage your agent can save to, recall by meaning, and read back across sessions. Works with **Claude Code, Claude Desktop, Cursor**, and other MCP-compatible tools.
 
-## What your agent gets
+## What your agent can do
 
-Six tools over your Bucket0 AgentBucket storage:
-
-| Tool | What it does |
-|---|---|
-| `save_file` | Save a file (output, doc, data, code). Auto-indexed for memory on paid plans. |
-| `search_memory` | Recall earlier files by meaning before regenerating work. |
-| `read_file` | Read back a file you saved. |
-| `list_files` | See what's stored. |
-| `delete_file` | Remove a file (on request). |
-| `create_folder` | Pre-create a folder. |
+- **save_file** to keep research, notes, documents, data, or code
+- **search_memory** to recall earlier work by meaning before redoing it
+- **read_file**, **list_files**, **delete_file**, **create_folder**
 
 ## Setup
 
-1. In the [Bucket0 dashboard](https://bucket0.com) → **AgentBucket → New Key**, create a key (`b0ak_…`). It's shown once.
-2. Add the server to your MCP client with that key as `BUCKET0_API_KEY`.
+1. Create a key in your [Bucket0 dashboard](https://bucket0.com) under **AgentBucket → New Key**. It is shown once.
+2. Add the server to your assistant with that key.
 
-### Claude Code
+**Claude Code**
 
 ```bash
 claude mcp add agentbucket -e BUCKET0_API_KEY=b0ak_your_key -- npx -y agentbucket
 ```
 
-### Claude Desktop / Cursor (`mcp.json` / config)
+**Claude Desktop / Cursor** (`mcp.json`)
 
 ```json
 {
@@ -42,26 +35,12 @@ claude mcp add agentbucket -e BUCKET0_API_KEY=b0ak_your_key -- npx -y agentbucke
 }
 ```
 
-## Configuration
+## Good to know
 
-| Env var | Required | Default |
-|---|---|---|
-| `BUCKET0_API_KEY` | yes | — (your `b0ak_…` key) |
-| `BUCKET0_BASE_URL` | no | `https://bucket0.com/api/agent-bucket` |
+- Recall by meaning (`search_memory`) is available on paid Bucket0 plans. Saving, listing, and reading work on every plan.
+- Your files are encrypted, and never used to train AI.
 
-## Notes
-
-- **Memory** (`search_memory`, auto-indexing) requires a **paid Bucket0 plan**. On Free, saving/listing/reading still work; search returns a plan-required error.
-- Text files are indexed automatically. Pass `index: false` to `save_file` for scratch/throwaway files.
-- The server is a thin client — all auth, quotas, encryption, and indexing happen server-side at Bucket0.
-
-## Develop
-
-```bash
-npm install
-npm run build
-BUCKET0_API_KEY=b0ak_... node dist/index.js
-```
+Want a one-click connector for Claude.ai or ChatGPT instead? See [bucket0.com](https://bucket0.com).
 
 ## License
 
