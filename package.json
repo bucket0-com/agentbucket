@@ -1,6 +1,6 @@
 {
   "name": "agentbucket",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server for Bucket0 AgentBucket — give your AI agent a persistent, encrypted file system it can save to and recall by meaning.",
   "type": "module",
   "bin": {

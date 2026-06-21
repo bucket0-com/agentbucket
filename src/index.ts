@@ -24,8 +24,15 @@ if (!apiKey) {
 
 const baseUrl = process.env.BUCKET0_BASE_URL || "https://bucket0.com/api/agent-bucket";
 
+if (!apiKey.startsWith("b0ak_")) {
+  console.error("agentbucket: warning — BUCKET0_API_KEY doesn't look like a Bucket0 key (expected a b0ak_ prefix).");
+}
+if (!/^https:\/\//.test(baseUrl) && !/^https?:\/\/localhost(:|\/|$)/.test(baseUrl)) {
+  console.error("agentbucket: warning — BUCKET0_BASE_URL is not https; your key would be sent over an insecure connection.");
+}
+
 const client = new AgentBucketClient(apiKey, baseUrl);
-const server = new McpServer({ name: "agentbucket", version: "0.1.0" });
+const server = new McpServer({ name: "agentbucket", version: "0.2.0" });
 registerTools(server, client);
 
 const transport = new StdioServerTransport();
